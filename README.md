@@ -19,4 +19,4 @@ This allows:
  - Rapid development of new applications using these building blocks
  
 ## Next steps
-The next problem to address is building and deploying from this structure.
+The next problem to address is building and deploying. While this structure could provide some stability across applications and their shared code (if changing core code breaks any other applications then the whole build should fail) it could also cause massive increases in build times.
