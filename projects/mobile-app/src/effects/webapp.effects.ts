@@ -4,7 +4,7 @@ import { Action } from '@ngrx/store';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
 import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
-import { UsersActionTypes, UsersActionsUnion, AllUsersLoaded, ErrorLoadingAllUsers } from '../../../../shared-core/actions/users.actions';
+import { UsersActionTypes, AllUsersLoaded, ErrorLoadingAllUsers } from '../../../../shared-core/actions/users.actions';
 
 @Injectable()
 export class WebAppUserEffects {

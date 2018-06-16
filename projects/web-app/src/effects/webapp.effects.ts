@@ -4,7 +4,12 @@ import { Action } from '@ngrx/store';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
 import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
-import { UsersActionTypes, UsersActionsUnion, AllUsersLoaded, ErrorLoadingAllUsers } from '../../../../shared-core/actions/users.actions';
+import {
+  AllUsersLoaded,
+  ErrorLoadingAllUsers,
+  UsersActionTypes
+} from '../../../../shared-core/actions/users.actions';
+import { User } from 'shared-core/reducers/users.reducer';
 
 @Injectable()
 export class WebAppUserEffects {
@@ -21,7 +26,7 @@ export class WebAppUserEffects {
 
   constructor(private actions$: Actions) {}
 
-  private populateUsers() {
+  private populateUsers(): Observable<User[]> {
     return of([
       {
         id: '1',

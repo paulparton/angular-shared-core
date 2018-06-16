@@ -17,11 +17,11 @@
       "dom"
     ],
     "paths": {
-      "feature-module": [
-        "dist/feature-module"
+      "feature-modules": [
+        "dist/feature-modules"
       ],
-      "feature-module/*": [
-        "dist/feature-module/*"
+      "feature-modules/*": [
+        "dist/feature-modules/*"
       ]
     }
   }
