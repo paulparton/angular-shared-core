@@ -1,11 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from 'shared-core/reducers/users.reducer';
-import { Store, createFeatureSelector } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { AppState } from 'shared-core/reducers';
-import { UserDetailsState } from './reducers/user-details.reducer';
 import { LoadUserDetails } from './actions/user-details.actions';
-
-export const selectUserDetailState = createFeatureSelector<UserDetailsState>('userDetails');
+import { selectUserDetailState } from './reducers';
 
 @Component({
   selector: 'lib-user-details',
