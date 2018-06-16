@@ -18,10 +18,10 @@ ENV PATH /usr/src/app/node_modules/.bin:$PATH
 # install and cache app dependencies
 
 RUN npm install
-RUN npm install -g @angular/cli@1.7.1 --unsafe
+RUN npm install -g @angular/cli@6.0.8 --unsafe
 
 # add app
 # COPY . /usr/src/app
 
 # start app
-#CMD ng serve web-app --host 0.0.0.0
+CMD ng serve web-app --host 0.0.0.0
