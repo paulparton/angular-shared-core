@@ -25,7 +25,7 @@ This allows:
 | shared core | A core ngrx store and actions that are shared between the web and mobile apps
 | projects/web-app | An angular application with an effect that populates the root store
 | projects/mobile-app | Another angular application an effect that populates the root store
-| projects/feature-module/src/lib | An angular component that shows a list of users
+| projects/feature-module/src/lib | An angular component with a feature store. There are two sets of effects for the store (one for each app type) exposed via a different module for each app type to import.
 
 ## Next steps
 The next problem to address is building and deploying from this structure.
