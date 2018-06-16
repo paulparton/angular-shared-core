@@ -4,9 +4,11 @@ import { AppComponent } from './app.component';
 import { SharedCoreService } from 'shared-core/shared-core.service';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { WebAppUserEffects } from '../../../web-app/src/effects/webapp.effects';
+import { WebAppUserEffects } from '../effects/mobileapp.effects';
 import { reducers } from '../../../../shared-core/reducers';
 import { UserDetailsMobileAppModule } from '../../../feature-modules/src/public_api';
+import { RouterModule } from '@angular/router';
+import { mobileAppRoutes } from './app.routes';
 
 @NgModule({
   declarations: [
@@ -14,11 +16,11 @@ import { UserDetailsMobileAppModule } from '../../../feature-modules/src/public_
   ],
   imports: [
     BrowserModule,
-    UserDetailsMobileAppModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([
       WebAppUserEffects
-    ])
+    ]),
+    RouterModule.forRoot(mobileAppRoutes)
   ],
   providers: [
     SharedCoreService

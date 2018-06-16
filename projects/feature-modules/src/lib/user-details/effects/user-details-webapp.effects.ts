@@ -5,16 +5,16 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { UserDetails } from '../reducers/user-details.reducer';
-import { UserDetailsLoaded, ErrorLoadingUserDetails, UserDetailsActionTypes } from '../actions/user-details.actions';
+import { UserDetailsLoaded, ErrorLoadingUserDetails, UserDetailsActionTypes, CustomAction } from '../actions/user-details.actions';
 
 @Injectable()
 export class UserDetailsWebAppEffects {
 
   // Listen for the 'LOGIN' action
   @Effect()
-  loadUsers$: Observable<Action> = this.actions$.pipe(
+  loadUser$: Observable<Action> = this.actions$.pipe(
     ofType(UserDetailsActionTypes.LOAD_USER_DETAILS),
-    switchMap(action => this.getUserDetail()
+    switchMap(action => this.getUserDetail((action as CustomAction).payload)
         .pipe(
             map(res => new UserDetailsLoaded(res)),
             catchError(err => of(new ErrorLoadingUserDetails(err)))
@@ -22,14 +22,27 @@ export class UserDetailsWebAppEffects {
 
   constructor(private actions$: Actions) {}
 
-  private getUserDetail(): Observable<UserDetails> {
-    console.log(`getUserDetails...`);
-    return of({
+  private getUserDetail(userId: any): Observable<UserDetails> {
+    const users: UserDetails[] = [{
       id: '123123123',
-      userId: '1231231231',
+      userId: '1',
       favoriteColour: 'red',
-      favouriteTransformer: 'Omega Supreme'
-    });
+      favouriteTransformer: 'Optimus Prime'
+    },
+    {
+      id: '123123123',
+      userId: '2',
+      favoriteColour: 'blue',
+      favouriteTransformer: 'Ultra Magnus'
+    },
+    {
+      id: '123123123',
+      userId: '3',
+      favoriteColour: 'green',
+      favouriteTransformer: 'Springer'
+    }];
+
+    return of(users.find(user => user.userId === userId));
   }
 
 }
