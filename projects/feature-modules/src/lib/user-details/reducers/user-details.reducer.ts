@@ -1,4 +1,5 @@
 import { UserDetailsActionsUnion, UserDetailsActionTypes } from '../actions/user-details.actions';
+import { createFeatureSelector } from '@ngrx/store';
 
 export interface UserDetails {
     id: string;
@@ -19,10 +20,8 @@ const defaultState: UserDetailsState = {
 };
 
 export function reducer(state: UserDetailsState = defaultState, action: UserDetailsActionsUnion): UserDetailsState {
-    console.log(`Uset Details Reducer....`);
   switch (action.type) {
     case UserDetailsActionTypes.LOAD_USER_DETAILS: {
-        console.log(`Uset Details Reducer.... load details`, action);
       return {
           ...state,
           loading: true
@@ -30,7 +29,6 @@ export function reducer(state: UserDetailsState = defaultState, action: UserDeta
     }
 
     case UserDetailsActionTypes.USER_DETAILS_LOADED: {
-        console.log(`user details loaded....`, action.userDetails);
         return {
             ...state,
             loading: false,
@@ -39,7 +37,6 @@ export function reducer(state: UserDetailsState = defaultState, action: UserDeta
     }
 
     case UserDetailsActionTypes.ERROR_LOADING_USER_DETAILS: {
-        console.log(`Uset Details Reducer.... err`, action);
         return {
             ...state,
             loading: false,
@@ -52,3 +49,5 @@ export function reducer(state: UserDetailsState = defaultState, action: UserDeta
     }
   }
 }
+
+export const selectUserDetailState = createFeatureSelector<UserDetailsState>('userDetails');

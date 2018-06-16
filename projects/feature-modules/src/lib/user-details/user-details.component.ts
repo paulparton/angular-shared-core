@@ -3,8 +3,9 @@ import { User } from 'shared-core/reducers/users.reducer';
 import { Store } from '@ngrx/store';
 import { AppState } from 'shared-core/reducers';
 import { LoadUserDetails } from './actions/user-details.actions';
-import { selectUserDetailState } from './reducers';
 import { Observable } from 'rxjs';
+import { UserDetailsState, selectUserDetailState } from './reducers/user-details.reducer';
+
 
 @Component({
   selector: 'lib-user-details',
@@ -21,7 +22,7 @@ import { Observable } from 'rxjs';
       </div>
       <div>
         <pre>
-          {{(userDetails | async)?.user?.favoriteColour}}
+        {{(userDetails | async)?.user?.favoriteColour}}
         </pre>
       </div>
     </div>
@@ -31,18 +32,27 @@ import { Observable } from 'rxjs';
 export class UserDetailsComponent implements OnInit {
 
   public users: Observable<User[]>;
-  public userDetails;
-  public selectedId;
+  public userDetails: Observable<UserDetailsState>;
   constructor(private readonly store: Store<AppState>) { }
 
   ngOnInit() {
+
+    /**
+     * Users from the root store (from the shared core)
+     */
     this.users = this.store.select(store => store.users.users);
+
+    /**
+     * User details are from this modules feature store
+     */
     this.userDetails = this.store.select(selectUserDetailState);
-    this.store.select(selectUserDetailState).subscribe(user => console.log(`updated in component `, user));
   }
 
   public loadUserDetails(userId) {
-    console.log(`update selected :: ${userId}`);
+
+    /**
+     * Dispatching an effect in the feature store using a parameter taken from the root store
+     */
     this.store.dispatch(new LoadUserDetails(userId));
   }
 }

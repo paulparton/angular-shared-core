@@ -13,7 +13,7 @@ Creating a mono-repo that contains:
 
 This allows:
  - a single base store to be shared across multiple applications.
- - feature modules with feature stores the ability to access the interface of the core store
+ - feature modules with feature stores and access to the interface of the core store
  - the ability to use different effects in different applications to populate the store from different data sources. e.g a web app might have a HTTP SDK effect to populate the store from the server, but hybrid mobile app might populate the store from a local SQL database that is periodically synched with the server.
  - Rapid development of new applications using these building blocks
  
