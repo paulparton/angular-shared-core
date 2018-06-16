@@ -9,7 +9,7 @@ Creating a mono-repo that contains:
  - "shared-core" providers / classes - core items for an angular application like the root ngrx store and actions
  - feature modules - modules and ngrx feature stores providing a "cohesive set of functionality focused on a specific application need" that can include different effects for loading data in different environments (online / offline)
  - library modules - collections of components and services providing reusable functionality
- - application modules - Angular applications with effects for loading data
+ - application modules - Angular applications with effects for loading data. *In this demo project each of the two applications has effects for loading data differently, but these could be moved to the shared core so any application could pick between different data sources for populating the store.
 
 This allows:
  - a single base store to be shared across multiple applications.
