@@ -7,9 +7,9 @@ Identifying a good solution for creating ngrx stores and angular feature modules
 ## The proposed solution
 Creating a mono-repo that contains:
  - "shared-core" providers / classes - core items for an angular application like the root ngrx store and actions
- - feature modules - modules and ngrx feature stores providing a "cohesive set of functionality focused on a specific application need"
+ - feature modules - modules and ngrx feature stores providing a "cohesive set of functionality focused on a specific application need" that can include different effects for loading data in different environments (online / offline)
  - library modules - collections of components and services providing reusable functionality
- - application modules - Angular applications
+ - application modules - Angular applications with effects for loading data
 
 This allows:
  - a single base store to be shared across multiple applications.
