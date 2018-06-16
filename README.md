@@ -1,11 +1,10 @@
 # Angular Shared Core
-Experimental infrastructure for sharing Angular and NGRX feature modules between multiple applications. This project is a very early work in progress, and I welcome any feedback
+Ideas for sharing Angular and NGRX feature modules between multiple applications. This project is a work in progress, and I welcome any feedback
 
 ## The problem
-Identifying a good solution for creating ngrx stores, angular feature modules and ngrx feature stores that can be shared across multiple angular applications without creating lots of extra work and compatability issues between apps.
+Identifying a good solution for creating ngrx stores and angular feature modules with ngrx feature stores that can be shared across multiple angular applications without creating lots of maintainance work and compatability issues between apps.
 
 ## The proposed solution
-
 Creating a mono-repo that contains:
  - "shared-core" providers / classes - core items for an angular application like the root ngrx store and actions
  - feature modules - modules and ngrx feature stores providing a "cohesive set of functionality focused on a specific application need"
@@ -27,5 +26,8 @@ This allows:
 | projects/mobile-app | Another angular application an effect that populates the root store
 | projects/feature-module/src/lib | An angular component with a feature store. There are two sets of effects for the store (one for each app type) exposed via a different module for each app type to import.
 
-## Next steps
-The next problem to address is building and deploying from this structure.
+## Building and deployment
+The next problem to address is building and deploying from this structure. A few initial thoughts:
+ - Rebuilding every app and feature module for every build would help reduce compatability issues caused by changes to feature modules / shared components, but would drastically increase build times.
+ - A smart build that only builds the project that has been updated would keep the build time down, but leave the risk of compatability issues between projects (e.g. modifying the shared core and only updating 1 application that depends on it)
+ - Separating the projects inside this repo to completely separate projects with separate builds could allow more flexability for different apps working with different versions of the shared core / feature modules, but this would make development more complicated and could lead to issues where different applications are dependant on vastly different version of the shared core / feature modules.
