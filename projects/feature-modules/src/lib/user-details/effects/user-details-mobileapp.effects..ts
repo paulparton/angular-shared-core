@@ -12,7 +12,7 @@ export class UserDetailsMobileAppEffects {
 
   // Listen for the 'LOGIN' action
   @Effect()
-  loadUsers$: Observable<Action> = this.actions$.pipe(
+  loadUser$: Observable<Action> = this.actions$.pipe(
     ofType(UserDetailsActionTypes.LOAD_USER_DETAILS),
     switchMap(action => this.getUserDetail((action as CustomAction).payload)
         .pipe(
@@ -27,20 +27,20 @@ export class UserDetailsMobileAppEffects {
     const users: UserDetails[] = [{
       id: '123123123',
       userId: '1',
-      favoriteColour: 'red',
-      favouriteTransformer: 'Optimus Prime'
+      favoriteColour: 'purple',
+      favouriteTransformer: 'Galvatron'
     },
     {
       id: '123123123',
       userId: '2',
-      favoriteColour: 'blue',
-      favouriteTransformer: 'Ultra Magnus'
+      favoriteColour: 'gun metal',
+      favouriteTransformer: 'Megatron'
     },
     {
       id: '123123123',
       userId: '3',
       favoriteColour: 'green',
-      favouriteTransformer: 'Springer'
+      favouriteTransformer: 'Devestator'
     }];
 
     return of(users.find(user => user.userId === userId));
