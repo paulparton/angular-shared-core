@@ -6,7 +6,10 @@ import { LoadUserDetails } from './actions/user-details.actions';
 import { Observable } from 'rxjs';
 import { UserDetailsState, selectUserDetailState } from './reducers/user-details.reducer';
 
-
+/**
+ * This component uses summary data from the root store (the users) and detail data from
+ * its feature store (the user details).
+ */
 @Component({
   selector: 'lib-user-details',
   template: `
